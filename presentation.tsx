@@ -15,6 +15,8 @@ import {
   TrendingUp,
   BookOpen,
   Star,
+  Circle,
+  Beaker,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -425,7 +427,8 @@ export default function Component() {
                 <CheckCircle className="w-6 h-6 text-emerald-400" />
                 <div>
                   <h3 className="text-xl font-semibold text-slate-200">Mission AMI Paris</h3>
-                  <p className="text-slate-400 mt-1">Phase Salesforce Core finalisée</p>
+                  <p className="text-slate-400 mt-1">Salesforce Core</p>
+                  <p className="text-slate-400 mt-1">Projet: Amigo Client Engagement</p>
                 </div>
               </div>
               
@@ -457,28 +460,26 @@ export default function Component() {
             {/* Arthus Bertrand - Parallel Mission */}
             <div className="bg-[#1a1f2d] rounded-xl p-6 border border-slate-500/10">
               <div className="flex items-center space-x-4 mb-6">
+                <CheckCircle className="w-6 h-6 text-emerald-400" />
                 <div>
                   <h3 className="text-xl font-semibold text-slate-200">Mission Arthus Bertrand</h3>
-                  <p className="text-slate-400 mt-1">Support et développement - En pause</p>
+                  <p className="text-slate-400 mt-1">MuleSoft</p>
+                  <p className="text-slate-400 mt-1">Projet: Lookup Cegid - Système de Détection des Doublons</p>
                 </div>
               </div>
               
               <div className="space-y-4 ml-10">
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
-                  <div>
-                    <span className="text-slate-300">
-                      Tâche réelle d'<HighlightedName>Abdelhay</HighlightedName> complétée et validée
-                    </span>
-                    <p className="text-sm text-slate-400 mt-1">En attente de nouvelles instructions</p>
-                  </div>
+                  <span className="text-slate-300">Mise en place API de détection des doublons</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
-                  <div>
-                    <span className="text-slate-300">Développement et intégration Salesforce Core</span>
-                    <p className="text-sm text-slate-400 mt-1">Application des compétences en situation réelle</p>
-                  </div>
+                  <span className="text-slate-300">Implémentation des règles de matching</span>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                  <span className="text-slate-300">Sécurisation des échanges de données</span>
                 </div>
               </div>
             </div>
@@ -509,38 +510,58 @@ export default function Component() {
       case "newphase":
         return (
           <div className="space-y-8">
-            {/* Primary Card - More prominent */}
-            <Card className="border-0 bg-[#1a1f2d]/95 shadow-xl backdrop-blur-sm border-l-4 border-l-blue-400 border border-blue-500/10 p-2">
-              <CardHeader className="pb-4">
-                <CardTitle className="flex items-center text-blue-100 text-2xl">
-                  <TrendingUp className="w-7 h-7 mr-4 text-blue-400" />
-                  Phase Actuelle
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-2xl font-semibold text-blue-200 pl-11">{slide.content?.current}</p>
-              </CardContent>
-            </Card>
+            {/* AMI Paris - Main Project */}
+            <div className="bg-[#1a1f2d] rounded-xl p-6 border border-slate-500/10">
+              <div className="flex items-start mb-6">
+                <div className="flex-shrink-0 mr-6">
+                  <Settings className="w-7 h-7 text-blue-400 mt-0" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-slate-200">Mission AMI Paris</h3>
+                  <p className="text-slate-400 mt-1">Phase de Test</p>
+                  <p className="text-slate-400 mt-1">Projet: Amigo Client Engagement</p>
+                  <p className="text-sm text-slate-400 mt-1">En collaboration avec <HighlightedName>Abdessamad</HighlightedName></p>
+                </div>
+              </div>
+              
+              <div className="space-y-4 ml-11">
+                <div className="flex items-start">
+                  <Circle className="w-2 h-2 text-blue-400 mt-2 mr-3 flex-shrink-0" />
+                  <span className="text-slate-300">Validation de l'intégration avec Cegid et Shopify</span>
+                </div>
+                <div className="flex items-start">
+                  <Circle className="w-2 h-2 text-blue-400 mt-2 mr-3 flex-shrink-0" />
+                  <div>
+                    <span className="text-slate-300">Création des classes de test et préparation au déploiement en production</span>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-            {/* Secondary Card - Supporting content */}
-            <Card className="border-0 bg-[#1a1f2d]/75 backdrop-blur-sm shadow-lg border border-slate-500/10">
-              <CardHeader className="pb-4">
-                <CardTitle className="flex items-center text-slate-200 text-xl">
-                  <Target className="w-6 h-6 mr-3 text-blue-400/80" />
-                  Tâches en Cours
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-4 pl-9">
-                  {slide.content?.tasks?.map((task, index) => (
-                    <li key={index} className="flex items-start group">
-                      <div className="w-2 h-2 bg-blue-400/80 rounded-full mt-2 mr-3 flex-shrink-0 group-hover:bg-blue-300 transition-colors"></div>
-                      <span className="text-slate-300 leading-relaxed group-hover:text-slate-200 transition-colors">{task}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
+            {/* Arthus Bertrand - Parallel Mission */}
+            <div className="bg-[#1a1f2d] rounded-xl p-6 border border-slate-500/10">
+              <div className="flex items-start mb-6">
+                <div className="flex-shrink-0 mr-6">
+                  <TrendingUp className="w-7 h-7 text-purple-400 mt-0" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-slate-200">Mission Arthus Bertrand</h3>
+                  <p className="text-slate-400 mt-1">Phase d'Évolution</p>
+                  <p className="text-slate-400 mt-1">Projet: Lookup Cegid - Système de Détection des Doublons</p>
+                </div>
+              </div>
+              
+              <div className="space-y-4 ml-11">
+                <div className="flex items-start">
+                  <Circle className="w-2 h-2 text-purple-400 mt-2 mr-3 flex-shrink-0" />
+                  <span className="text-slate-300">Extension du système aux données Magento</span>
+                </div>
+                <div className="flex items-start">
+                  <Circle className="w-2 h-2 text-purple-400 mt-2 mr-3 flex-shrink-0" />
+                  <span className="text-slate-300">Amélioration de la précision de détection</span>
+                </div>
+              </div>
+            </div>
           </div>
         )
 
