@@ -22,6 +22,8 @@ import {
   Clock,
   BarChart,
   PiggyBank,
+  Laptop2,
+  ExternalLink,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -186,6 +188,7 @@ const slides = [
 
 export default function Component() {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const [showPreview, setShowPreview] = useState(false)
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length)
@@ -210,6 +213,52 @@ export default function Component() {
   }, [currentSlide])
 
   const slide = slides[currentSlide]
+
+  const PlatformPreview = () => (
+    <div 
+      className={`fixed inset-0 z-50 flex items-center justify-center ${showPreview ? 'opacity-100' : 'opacity-0 pointer-events-none'} transition-opacity duration-300`}
+      onClick={() => setShowPreview(false)}
+    >
+      {/* Backdrop */}
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+      
+      {/* Modal Content */}
+      <div 
+        className="relative bg-[#1a1f2d] rounded-lg shadow-2xl border border-blue-500/20 p-3 w-[90vw] max-w-[1200px] max-h-[80vh] transform scale-[0.98] transition-transform duration-300 hover:scale-100"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Browser Chrome */}
+        <div className="bg-slate-900 rounded-t-lg p-2 flex items-center gap-2 border-b border-slate-700">
+          <div className="flex gap-1.5">
+            <div className="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+            <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+            <div className="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+          </div>
+          <div className="flex-1 text-center">
+            <p className="text-xs text-slate-400 font-mono truncate px-2">laptop-recommandation.vercel.app</p>
+          </div>
+          <a 
+            href="https://laptop-recommandation.vercel.app" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-slate-400 hover:text-slate-300 transition-colors"
+          >
+            <ExternalLink className="w-4 h-4" />
+          </a>
+        </div>
+        
+        {/* Website Iframe */}
+        <div className="w-full bg-white rounded-b-lg overflow-hidden">
+          <iframe
+            src="https://laptop-recommandation.vercel.app"
+            className="w-full h-[65vh]"
+            frameBorder="0"
+            title="Laptop Recommendation Platform"
+          />
+        </div>
+      </div>
+    </div>
+  )
 
   const renderSlideContent = () => {
     switch (slide.type) {
@@ -533,8 +582,8 @@ export default function Component() {
                   <CheckCircle className="w-5 h-5 text-emerald-400" />
                   <div>
                     <span className="text-slate-300">Certification Developer I</span>
-                    <p className="text-sm text-slate-400 mt-1">Ressources récupérées pour débuter la préparation (dumps)</p>
-                    </div>
+                    <p className="text-sm text-slate-400 mt-1">Préparation en cours</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -588,11 +637,15 @@ export default function Component() {
               <div className="space-y-4 ml-11">
                 <div className="flex items-start">
                   <Circle className="w-2 h-2 text-purple-400 mt-2 mr-3 flex-shrink-0" />
-                  <span className="text-slate-300">Extension du système aux données Magento</span>
+                  <span className="text-slate-300">Amélioration de la gestion des adresses clients multi-sources</span>
                 </div>
                 <div className="flex items-start">
                   <Circle className="w-2 h-2 text-purple-400 mt-2 mr-3 flex-shrink-0" />
-                  <span className="text-slate-300">Amélioration de la précision de détection</span>
+                  <span className="text-slate-300">Standardisation du format des adresses internationales</span>
+                </div>
+                <div className="flex items-start">
+                  <Circle className="w-2 h-2 text-purple-400 mt-2 mr-3 flex-shrink-0" />
+                  <span className="text-slate-300">Optimisation de la traçabilité des données clients</span>
                 </div>
               </div>
             </div>
@@ -710,19 +763,41 @@ export default function Component() {
 
       case "squad_platform":
         return (
-          <div className="space-y-6">
+          <div className="space-y-8">
             {/* Platform Overview */}
-            <Card className="border-0 bg-[#1a1f2d]/95 shadow-xl backdrop-blur-sm border-l-4 border-l-blue-400 border border-blue-500/10 p-6">
-              <CardHeader className="pb-4">
-                <CardTitle className="flex items-center space-x-4">
-                  <Code className="w-7 h-7 text-blue-400" />
-                  <div>
-                    <h3 className="text-2xl text-blue-100">Laptop Recommendation Platform</h3>
-                    <p className="text-slate-300 mt-2">Centralisation et automatisation du processus d'équipement</p>
-                    <p className="text-sm text-slate-400 mt-1 font-mono">{slide.content?.url}</p>
+            <Card className="border-0 bg-[#1a1f2d]/95 shadow-xl backdrop-blur-sm border border-blue-500/10 p-8 relative">
+              <div className="space-y-8">
+                <div 
+                  className="flex items-center space-x-5 cursor-pointer group"
+                  onClick={() => setShowPreview(true)}
+                >
+                  <Laptop2 className="w-6 h-6 text-blue-400" />
+                  <div className="space-y-2">
+                    <div className="flex items-center space-x-3">
+                      <h3 className="text-2xl font-semibold text-white group-hover:text-blue-300 transition-colors">Laptop Recommendation Platform</h3>
+                      <ExternalLink className="w-4 h-4 text-blue-400" />
+                    </div>
+                    <p className="text-sm text-slate-400 font-mono">{slide.content?.url}</p>
                   </div>
-                </CardTitle>
-              </CardHeader>
+                </div>
+
+                <div className="space-y-6 ml-10">
+                  <p className="text-base text-slate-300 leading-relaxed">
+                    Plateforme web développée pour la Squad Interne (MIS) visant à simplifier et optimiser le processus d'attribution des équipements informatiques.
+                  </p>
+
+                  <ul className="space-y-4">
+                    <li className="flex items-start space-x-4">
+                      <Circle className="w-1.5 h-1.5 mt-2 text-blue-400 flex-shrink-0" />
+                      <span className="text-slate-300">Centralisation des demandes et automatisation des recommandations basées sur les profils utilisateurs</span>
+                    </li>
+                    <li className="flex items-start space-x-4">
+                      <Circle className="w-1.5 h-1.5 mt-2 text-blue-400 flex-shrink-0" />
+                      <span className="text-slate-300">Réduction significative du temps de traitement et standardisation des processus d'équipement</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </Card>
 
             {/* Core Features Grid */}
@@ -876,34 +951,124 @@ export default function Component() {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Platform Preview Modal */}
+            <PlatformPreview />
           </div>
         )
 
       case "next":
         return (
-          <Card className="border-0 bg-[#1a1f2d]/90 shadow-lg backdrop-blur-sm border border-slate-500/10">
-            <CardHeader className="pb-6">
-              <CardTitle className="flex items-center text-indigo-200 text-2xl">
-                <Rocket className="w-7 h-7 mr-3 text-indigo-400" />
-                Objectifs à Court Terme
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid gap-6">
-                {slide.content?.steps?.map((step, index) => (
-                  <div
-                    key={index}
-                    className="flex items-start p-5 bg-[#1a1f2d]/80 backdrop-blur-sm rounded-xl border border-slate-500/10"
-                  >
-                    <div className="flex items-center justify-center w-8 h-8 bg-indigo-400 text-white rounded-full mr-4 flex-shrink-0 font-medium">
-                      {index + 1}
+          <div className="space-y-8">
+            {/* Introduction */}
+            <div className="bg-[#1a1f2d]/70 rounded-xl p-6 backdrop-blur-sm border border-slate-500/10 mb-8">
+              <p className="text-slate-200 leading-relaxed text-lg">
+                Mon parcours continue avec des objectifs clairs pour approfondir mes compétences et maximiser mon impact au sein de l'équipe.
+              </p>
+            </div>
+
+            {/* Short Term Goals */}
+            <Card className="border-0 bg-[#1a1f2d]/90 shadow-lg backdrop-blur-sm border border-indigo-500/10">
+              <CardHeader className="pb-6">
+                <CardTitle className="flex items-center text-indigo-200 text-xl">
+                  <Target className="w-6 h-6 mr-3 text-indigo-400" />
+                  Objectifs Immédiats
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid gap-6">
+                  <div className="flex items-start p-5 bg-[#1a1f2d]/80 backdrop-blur-sm rounded-xl border border-indigo-500/10 relative overflow-hidden group">
+                    <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-indigo-400 to-purple-400 text-white rounded-lg mr-4 flex-shrink-0 shadow-lg">
+                      <Star className="w-6 h-6" />
                     </div>
-                    <span className="text-gray-200 leading-relaxed pt-1">{step}</span>
+                    <div className="space-y-2">
+                      <h3 className="text-lg font-semibold text-white">Certification Salesforce Developer I</h3>
+                      <div className="flex items-center space-x-4">
+                        <div className="flex-1 h-2 bg-slate-700 rounded-full overflow-hidden">
+                          <div className="h-full w-[30%] bg-gradient-to-r from-indigo-400 to-purple-400 rounded-full"></div>
+                        </div>
+                        <span className="text-indigo-300 font-medium">30%</span>
+                      </div>
+                      <p className="text-slate-400 text-sm">Préparation en cours</p>
+                    </div>
                   </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+
+                  <div className="flex items-start p-5 bg-[#1a1f2d]/80 backdrop-blur-sm rounded-xl border border-purple-500/10 relative overflow-hidden group">
+                    <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-fuchsia-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-purple-400 to-fuchsia-400 text-white rounded-lg mr-4 flex-shrink-0 shadow-lg">
+                      <Users className="w-6 h-6" />
+                    </div>
+                    <div className="space-y-2">
+                      <h3 className="text-lg font-semibold text-white">Share & Learn #2</h3>
+                      <div className="flex items-center space-x-4">
+                        <div className="flex-1 h-2 bg-slate-700 rounded-full overflow-hidden">
+                          <div className="h-full w-[40%] bg-gradient-to-r from-purple-400 to-fuchsia-400 rounded-full"></div>
+                        </div>
+                        <span className="text-purple-300 font-medium">40%</span>
+                      </div>
+                      <p className="text-slate-400 text-sm">En cours de préparation</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Long Term Vision */}
+            <Card className="border-0 bg-[#1a1f2d]/90 shadow-lg backdrop-blur-sm border border-blue-500/10">
+              <CardHeader className="pb-6">
+                <CardTitle className="flex items-center text-blue-200 text-xl">
+                  <Rocket className="w-6 h-6 mr-3 text-blue-400" />
+                  Vision à Long Terme
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-medium text-blue-100 flex items-center">
+                      <Code className="w-5 h-5 mr-2 text-blue-400" />
+                      Expertise Technique
+                    </h3>
+                    <div className="space-y-3 ml-7">
+                      <div className="flex items-center space-x-3">
+                        <Circle className="w-1.5 h-1.5 text-blue-400" />
+                        <span className="text-slate-300">Approfondissement Salesforce Core</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <Circle className="w-1.5 h-1.5 text-blue-400" />
+                        <span className="text-slate-300">Maîtrise avancée de MuleSoft</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <Circle className="w-1.5 h-1.5 text-blue-400" />
+                        <span className="text-slate-300">Architecture des intégrations</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-medium text-blue-100 flex items-center">
+                      <BookOpen className="w-5 h-5 mr-2 text-blue-400" />
+                      Documentation & Partage
+                    </h3>
+                    <div className="space-y-3 ml-7">
+                      <div className="flex items-center space-x-3">
+                        <Circle className="w-1.5 h-1.5 text-blue-400" />
+                        <span className="text-slate-300">Documentation technique complète</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <Circle className="w-1.5 h-1.5 text-blue-400" />
+                        <span className="text-slate-300">Guides de bonnes pratiques</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <Circle className="w-1.5 h-1.5 text-blue-400" />
+                        <span className="text-slate-300">Partage des connaissances acquises</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         )
 
       default:
