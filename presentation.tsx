@@ -17,6 +17,11 @@ import {
   Star,
   Circle,
   Beaker,
+  Database,
+  GitBranch,
+  Clock,
+  BarChart,
+  PiggyBank,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -120,22 +125,51 @@ const slides = [
   {
     id: 7,
     title: "Squad Interne",
-    subtitle: "Power Rangers (MIS)",
-    type: "squad",
+    subtitle: "Power Rangers ( MIS )",
+    type: "squad_ops",
     content: {
-      project: "Laptop Recommendation Platform",
-      url: "laptop-recommandation.vercel.app",
-      objectives: ["Recommander packages matériels selon profils", "Faciliter prise de décision équipement"],
-      responsibilities: [
-        "Analyse besoins utilisateurs",
-        "Sourcing composants matériels",
-        "Négociation avec fabricants",
-        "Partenariat avec UNO (remises groupées)",
+      operations: [
+        "Gestion des demandes d'équipement",
+        "Benchmarking des laptops pour nouveaux arrivants",
+        "Négociation avec les fournisseurs",
+        "Suivi des commandes et livraisons"
       ],
+      achievements: [
+        "Optimisation des coûts via partenariat UNO",
+        "Standardisation des processus d'acquisition",
+        "Réduction du temps de traitement des demandes",
+        "Amélioration de la satisfaction utilisateur"
+      ]
     },
   },
   {
     id: 8,
+    title: "Squad Interne",
+    subtitle: "Laptop Recommendation Platform",
+    type: "squad_platform",
+    content: {
+      platform: {
+        entry: [
+          "Questionnaire intelligent",
+          "Analyse du profil utilisateur",
+          "Identification des besoins techniques"
+        ],
+        features: [
+          "Matching profil-toolkit automatisé",
+          "Recommandations personnalisées",
+          "Comparaison des options"
+        ],
+        management: [
+          "Base de données équipements",
+          "Suivi des commandes",
+          "Intégration Notion"
+        ]
+      },
+      url: "laptop-recommandation.vercel.app"
+    },
+  },
+  {
+    id: 9,
     title: "Prochaines Étapes",
     subtitle: "Roadmap & Objectifs",
     type: "next",
@@ -500,7 +534,7 @@ export default function Component() {
                   <div>
                     <span className="text-slate-300">Certification Developer I</span>
                     <p className="text-sm text-slate-400 mt-1">Ressources récupérées pour débuter la préparation (dumps)</p>
-                  </div>
+                    </div>
                 </div>
               </div>
             </div>
@@ -565,64 +599,283 @@ export default function Component() {
           </div>
         )
 
-      case "squad":
+      case "squad_ops":
         return (
           <div className="space-y-8">
-            {/* Primary Card - Project Overview */}
-            <Card className="border-0 bg-[#1a1f2d]/95 shadow-xl backdrop-blur-sm border-l-4 border-l-orange-400 border border-orange-500/10 p-2">
+            {/* Main Operations Card */}
+            <Card className="border-0 bg-[#1a1f2d]/95 shadow-xl backdrop-blur-sm border-l-4 border-l-orange-400 border border-orange-500/10 p-6">
               <CardHeader className="pb-4">
                 <CardTitle className="flex items-center text-orange-100 text-2xl">
-                  <Users className="w-7 h-7 mr-4 text-orange-400" />
-                  {slide.content?.project}
+                  <Building className="w-7 h-7 mr-4 text-orange-400" />
+                  Gestion des Équipements
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-orange-200 font-mono text-lg bg-[#151b27] px-4 py-2 rounded-lg inline-block border border-orange-500/10 ml-11">
-                  {slide.content?.url}
-                </p>
+                <div className="space-y-6">
+                  <div className="space-y-4">
+                    <div className="flex items-start bg-[#1a1f2d]/80 p-4 rounded-lg border border-orange-500/10">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-orange-400/10 flex items-center justify-center mr-4">
+                        <span className="text-orange-400 font-semibold">1</span>
+                      </div>
+                      <div>
+                        <h4 className="text-slate-200 font-medium mb-2">Réception et Évaluation</h4>
+                        <ul className="space-y-2 text-slate-300 text-sm">
+                          <li className="flex items-center">
+                            <Circle className="w-1.5 h-1.5 mr-2 text-orange-400" />
+                            Point de contact principal pour les demandes d'équipement
+                          </li>
+                          <li className="flex items-center">
+                            <Circle className="w-1.5 h-1.5 mr-2 text-orange-400" />
+                            Évaluation des besoins spécifiques
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start bg-[#1a1f2d]/80 p-4 rounded-lg border border-orange-500/10">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-orange-400/10 flex items-center justify-center mr-4">
+                        <span className="text-orange-400 font-semibold">2</span>
+                      </div>
+                      <div>
+                        <h4 className="text-slate-200 font-medium mb-2">Sourcing et Devis</h4>
+                        <ul className="space-y-2 text-slate-300 text-sm">
+                          <li className="flex items-center">
+                            <Circle className="w-1.5 h-1.5 mr-2 text-orange-400" />
+                            Obtention et comparaison des devis
+                          </li>
+                          <li className="flex items-center">
+                            <Circle className="w-1.5 h-1.5 mr-2 text-orange-400" />
+                            Sélection des périphériques adaptés
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start bg-[#1a1f2d]/80 p-4 rounded-lg border border-orange-500/10">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-orange-400/10 flex items-center justify-center mr-4">
+                        <span className="text-orange-400 font-semibold">3</span>
+                      </div>
+                      <div>
+                        <h4 className="text-slate-200 font-medium mb-2">Suivi et Livraison</h4>
+                        <ul className="space-y-2 text-slate-300 text-sm">
+                          <li className="flex items-center">
+                            <Circle className="w-1.5 h-1.5 mr-2 text-orange-400" />
+                            Gestion de la commande jusqu'à la livraison
+                          </li>
+                          <li className="flex items-center">
+                            <Circle className="w-1.5 h-1.5 mr-2 text-orange-400" />
+                            Coordination avec les fournisseurs
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </CardContent>
             </Card>
 
-            {/* Secondary Cards Grid */}
-            <div className="grid md:grid-cols-2 gap-8">
-              <Card className="border-0 bg-[#1a1f2d]/75 backdrop-blur-sm shadow-lg border border-slate-500/10">
+            {/* Achievements Card */}
+            <Card className="border-0 bg-[#1a1f2d]/90 shadow-lg backdrop-blur-sm border border-emerald-500/10 p-6">
+              <CardHeader className="pb-4">
+                <CardTitle className="flex items-center text-emerald-100 text-xl">
+                  <Target className="w-6 h-6 mr-3 text-emerald-400" />
+                  Réalisations Concrètes
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-6">
+                  <div className="bg-[#1a1f2d]/80 p-4 rounded-lg border border-emerald-500/10">
+                    <h4 className="text-emerald-200 font-medium mb-3 flex items-center">
+                      <Star className="w-5 h-5 mr-2 text-emerald-400" />
+                      Configuration et mise en place des Ordinateurs
+                    </h4>
+                    <ul className="space-y-2 ml-7">
+                      <li className="text-slate-300 flex items-center">
+                        <Circle className="w-1.5 h-1.5 mr-2 text-emerald-400" />
+                        Setup complet pour Abdessamad
+                      </li>
+                      <li className="text-slate-300 flex items-center">
+                        <Circle className="w-1.5 h-1.5 mr-2 text-emerald-400" />
+                        Setup complet pour Tachafine
+                    </li>
+                </ul>
+                  </div>
+
+                  
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )
+
+      case "squad_platform":
+        return (
+          <div className="space-y-6">
+            {/* Platform Overview */}
+            <Card className="border-0 bg-[#1a1f2d]/95 shadow-xl backdrop-blur-sm border-l-4 border-l-blue-400 border border-blue-500/10 p-6">
+              <CardHeader className="pb-4">
+                <CardTitle className="flex items-center space-x-4">
+                  <Code className="w-7 h-7 text-blue-400" />
+                  <div>
+                    <h3 className="text-2xl text-blue-100">Laptop Recommendation Platform</h3>
+                    <p className="text-slate-300 mt-2">Centralisation et automatisation du processus d'équipement</p>
+                    <p className="text-sm text-slate-400 mt-1 font-mono">{slide.content?.url}</p>
+                  </div>
+                </CardTitle>
+              </CardHeader>
+            </Card>
+
+            {/* Core Features Grid */}
+            <div className="grid md:grid-cols-3 gap-4">
+              <Card className="border-0 bg-[#1a1f2d]/90 shadow-lg backdrop-blur-sm border border-blue-500/10 p-6">
                 <CardHeader className="pb-4">
-                  <CardTitle className="flex items-center text-slate-200 text-lg">
-                    <Target className="w-5 h-5 mr-3 text-orange-400/80" />
-                    Objectifs
+                  <CardTitle className="flex items-center text-blue-100 text-lg">
+                    <Database className="w-5 h-5 mr-3 text-blue-400" />
+                    Gestion des Données
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <ul className="space-y-3 pl-8">
-                    {slide.content?.objectives?.map((obj, index) => (
-                      <li key={index} className="flex items-start group">
-                        <CheckCircle className="w-4 h-4 mr-3 mt-1 text-emerald-400 flex-shrink-0 group-hover:text-emerald-300" />
-                        <span className="text-slate-300 text-sm leading-relaxed group-hover:text-slate-200">{obj}</span>
-                      </li>
-                    ))}
+                  <ul className="space-y-3">
+                    <li className="flex items-center text-slate-200">
+                      <Circle className="w-1.5 h-1.5 mr-2 text-blue-400" />
+                      Base de données centralisée
+                    </li>
+                    <li className="flex items-center text-slate-200">
+                      <Circle className="w-1.5 h-1.5 mr-2 text-blue-400" />
+                      Intégration avec Notion
+                    </li>
+                    <li className="flex items-center text-slate-200">
+                      <Circle className="w-1.5 h-1.5 mr-2 text-blue-400" />
+                      Historique des configurations
+                    </li>
                   </ul>
                 </CardContent>
               </Card>
 
-              <Card className="border-0 bg-[#1a1f2d]/75 backdrop-blur-sm shadow-lg border border-slate-500/10">
+              <Card className="border-0 bg-[#1a1f2d]/90 shadow-lg backdrop-blur-sm border border-purple-500/10 p-6">
                 <CardHeader className="pb-4">
-                  <CardTitle className="flex items-center text-slate-200 text-lg">
-                    <Building className="w-5 h-5 mr-3 text-orange-400/80" />
-                    Responsabilités
+                  <CardTitle className="flex items-center text-purple-100 text-lg">
+                    <Settings className="w-5 h-5 mr-3 text-purple-400" />
+                    Automatisation
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <ul className="space-y-3 pl-8">
-                    {slide.content?.responsibilities?.map((resp, index) => (
-                      <li key={index} className="flex items-start group">
-                        <div className="w-2 h-2 bg-orange-400/80 rounded-full mt-2 mr-3 flex-shrink-0 group-hover:bg-orange-300"></div>
-                        <span className="text-slate-300 text-sm leading-relaxed group-hover:text-slate-200">{resp}</span>
-                      </li>
-                    ))}
+                  <ul className="space-y-3">
+                    <li className="flex items-center text-slate-200">
+                      <Circle className="w-1.5 h-1.5 mr-2 text-purple-400" />
+                      Système de matching automatisé
+                    </li>
+                    <li className="flex items-center text-slate-200">
+                      <Circle className="w-1.5 h-1.5 mr-2 text-purple-400" />
+                      Génération des devis
+                    </li>
+                    <li className="flex items-center text-slate-200">
+                      <Circle className="w-1.5 h-1.5 mr-2 text-purple-400" />
+                      Suivi des commandes
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="border-0 bg-[#1a1f2d]/90 shadow-lg backdrop-blur-sm border border-indigo-500/10 p-6">
+                <CardHeader className="pb-4">
+                  <CardTitle className="flex items-center text-indigo-100 text-lg">
+                    <Users className="w-5 h-5 mr-3 text-indigo-400" />
+                    Expérience Utilisateur
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-3">
+                    <li className="flex items-center text-slate-200">
+                      <Circle className="w-1.5 h-1.5 mr-2 text-indigo-400" />
+                      Interface intuitive
+                    </li>
+                    <li className="flex items-center text-slate-200">
+                      <Circle className="w-1.5 h-1.5 mr-2 text-indigo-400" />
+                      Recommandations personnalisées
+                    </li>
+                    <li className="flex items-center text-slate-200">
+                      <Circle className="w-1.5 h-1.5 mr-2 text-indigo-400" />
+                      Documentation accessible
+                    </li>
                   </ul>
                 </CardContent>
               </Card>
             </div>
+
+            {/* Survey Flow (Compact) */}
+            <Card className="border-0 bg-[#1a1f2d]/90 shadow-lg backdrop-blur-sm border border-emerald-500/10 p-6">
+              <CardHeader className="pb-4">
+                <CardTitle className="flex items-center text-emerald-100 text-lg">
+                  <GitBranch className="w-5 h-5 mr-3 text-emerald-400" />
+                  Processus de Recommandation
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex justify-between items-start">
+                  <div className="flex-1 relative">
+                    <div className="absolute -right-4 top-1/2 transform -translate-y-1/2 z-10">
+                      <div className="w-8 h-[2px] bg-emerald-400"></div>
+                      <div className="absolute right-0 top-1/2 transform -translate-y-1/2 rotate-45 w-2 h-[2px] bg-emerald-400"></div>
+                      <div className="absolute right-0 top-1/2 transform -translate-y-1/2 -rotate-45 w-2 h-[2px] bg-emerald-400"></div>
+                    </div>
+                    <div className="bg-[#1a1f2d]/80 p-4 rounded-lg border border-emerald-500/10">
+                      <h4 className="text-emerald-200 font-medium mb-2">Questionnaire Initial</h4>
+                      <p className="text-slate-300 text-sm">Collecte des informations et besoins</p>
+                    </div>
+                  </div>
+
+                  <div className="flex-1 relative mx-8">
+                    <div className="absolute -right-4 top-1/2 transform -translate-y-1/2 z-10">
+                      <div className="w-8 h-[2px] bg-emerald-400"></div>
+                      <div className="absolute right-0 top-1/2 transform -translate-y-1/2 rotate-45 w-2 h-[2px] bg-emerald-400"></div>
+                      <div className="absolute right-0 top-1/2 transform -translate-y-1/2 -rotate-45 w-2 h-[2px] bg-emerald-400"></div>
+                    </div>
+                    <div className="bg-[#1a1f2d]/80 p-4 rounded-lg border border-emerald-500/10">
+                      <h4 className="text-emerald-200 font-medium mb-2">Analyse du Profil</h4>
+                      <p className="text-slate-300 text-sm">Matching et optimisation</p>
+                    </div>
+                  </div>
+
+                  <div className="flex-1">
+                    <div className="bg-[#1a1f2d]/80 p-4 rounded-lg border border-emerald-500/10">
+                      <h4 className="text-emerald-200 font-medium mb-2">Recommandations</h4>
+                      <p className="text-slate-300 text-sm">Configuration et mise en place</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Benefits */}
+            <Card className="border-0 bg-[#1a1f2d]/90 shadow-lg backdrop-blur-sm border border-orange-500/10 p-6">
+              <CardHeader className="pb-4">
+                <CardTitle className="flex items-center text-orange-100 text-lg">
+                  <Target className="w-5 h-5 mr-3 text-orange-400" />
+                  Impact & Bénéfices
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="flex items-start space-x-3">
+                    <Clock className="w-5 h-5 text-orange-400 flex-shrink-0" />
+                    <span className="text-slate-200">Réduction du temps de traitement</span>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <BarChart className="w-5 h-5 text-orange-400 flex-shrink-0" />
+                    <span className="text-slate-200">Standardisation des processus</span>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <Target className="w-5 h-5 text-orange-400 flex-shrink-0" />
+                    <span className="text-slate-200">Précision des recommandations</span>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <PiggyBank className="w-5 h-5 text-orange-400 flex-shrink-0" />
+                    <span className="text-slate-200">Optimisation budgétaire</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         )
 
