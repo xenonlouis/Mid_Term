@@ -518,23 +518,23 @@ export default function Component() {
               <div className="space-y-4 ml-10">
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-300">Intégration systèmes externes</span>
+                  <div>
+                    <span className="text-slate-300">Intégration des Orders & Order Line Items depuis Cegid Y2 et Shopify</span>
+                    <p className="text-sm text-slate-400 mt-1">Synchronisation et gestion des commandes multi-sources</p>
+                  </div>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-300">Développement logique métier Apex</span>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-300">Gestion conformité RGPD</span>
+                  <div>
+                    <span className="text-slate-300">Automatisation RGPD pour l'anonymisation des données</span>
+                    <p className="text-sm text-slate-400 mt-1">Gestion automatique des clients et prospects inactifs</p>
+                  </div>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
                   <div>
                     <span className="text-slate-300">Développement des Mappings pour systèmes externes</span>
-                    <p className="text-sm text-slate-400 mt-1">
-                      En collaboration avec <HighlightedName>Abdessamad</HighlightedName>
-                    </p>
+                    <p className="text-sm text-slate-400 mt-1">En collaboration avec <HighlightedName>Abdessamad</HighlightedName></p>
                   </div>
                 </div>
               </div>
