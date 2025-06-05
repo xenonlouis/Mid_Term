@@ -1145,6 +1145,17 @@ export default function Component() {
             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#62EF92]/10 to-transparent rounded-bl-full"></div>
             <div className="absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-tr from-[#62EF92]/10 to-transparent rounded-tr-full"></div>
 
+            {/* Reetain Short Logo - Consistent Position */}
+            <div className="absolute bottom-6 right-6 z-20">
+              <Image
+                src="/images/Reetain Short Logotypes Variety RVB-03.png"
+                alt="Reetain Short Logo"
+                width={60}
+                height={60}
+                className="object-contain opacity-80 hover:opacity-100 transition-opacity"
+              />
+            </div>
+
             <div className="relative z-10">
               {slide.type === "title" ? (
                 <div className="flex flex-col items-center justify-center min-h-[600px] text-center">
@@ -1165,13 +1176,15 @@ export default function Component() {
                   </p>
                 </div>
               ) : (
-                <div className="mb-10">
-                  <h2 className="text-4xl font-bold text-white mb-3">{slide.title}</h2>
-                  <p className="text-xl text-[#62EF92]">{slide.subtitle}</p>
-                </div>
-              )}
+                <>
+                  <div className="mb-10">
+                    <h2 className="text-4xl font-bold text-white mb-3">{slide.title}</h2>
+                    <p className="text-xl text-[#62EF92]">{slide.subtitle}</p>
+                  </div>
 
-              {slide.type !== "title" && renderSlideContent()}
+                  {renderSlideContent()}
+                </>
+              )}
             </div>
           </div>
 
