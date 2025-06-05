@@ -28,6 +28,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import Image from "next/image"
 
 const HighlightedName = ({ children }: { children: React.ReactNode }) => (
   <strong className="font-semibold text-purple-300">{children}</strong>
@@ -1077,81 +1078,113 @@ export default function Component() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-indigo-950 relative overflow-hidden">
+    <div className="min-h-screen bg-[rgb(35,45,47)] relative overflow-hidden">
+      {/* Navigation and Logo - Absolute Position */}
+      <div className="fixed top-6 right-6 z-50 flex items-center gap-4">
+        <div className="flex gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={prevSlide}
+            disabled={currentSlide === 0}
+            className="bg-[#1a2426]/50 hover:bg-[#1a2426] border-[#62EF92]/20 text-white w-8 h-8 p-0"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={nextSlide}
+            disabled={currentSlide === slides.length - 1}
+            className="bg-[#1a2426]/50 hover:bg-[#1a2426] border-[#62EF92]/20 text-white w-8 h-8 p-0"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </Button>
+        </div>
+        <div className="w-[270px]">
+          <Image
+            src="/images/reetain-logo.png"
+            alt="Reetain Logo"
+            width={1920}
+            height={1080}
+            className="object-contain"
+            priority
+          />
+        </div>
+      </div>
+
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-[0.03]">
         <div
           className="absolute top-0 left-0 w-full h-full"
           style={{
-            backgroundImage: `radial-gradient(circle at 25% 25%, #8b5cf6 2px, transparent 2px),
-                                radial-gradient(circle at 75% 75%, #a855f7 2px, transparent 2px)`,
+            backgroundImage: `radial-gradient(circle at 25% 25%, #62EF92 2px, transparent 2px),
+                             radial-gradient(circle at 75% 75%, rgba(98, 239, 146, 0.5) 2px, transparent 2px)`,
             backgroundSize: "60px 60px",
           }}
         ></div>
       </div>
 
       {/* Decorative Elements */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-purple-500/15 to-violet-500/15 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-r from-violet-500/15 to-fuchsia-500/15 rounded-full blur-3xl"></div>
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-purple-400/8 to-indigo-400/8 rounded-full blur-3xl"></div>
+      <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-[#62EF92]/10 to-[#62EF92]/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-r from-[#62EF92]/10 to-[#62EF92]/5 rounded-full blur-3xl"></div>
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-[#62EF92]/5 to-[#62EF92]/3 rounded-full blur-3xl"></div>
 
       <div className="relative z-10 min-h-screen w-full flex flex-col items-center justify-center py-6 px-4">
         <div className="w-full max-w-7xl mx-auto">
-          {/* Header */}
-          <div className="flex justify-between items-center mb-8">
-            <div className="text-sm text-slate-300 bg-slate-700/80 backdrop-blur-sm px-4 py-2 rounded-full border border-slate-500/50">
-              Slide {currentSlide + 1} of {slides.length}
-            </div>
-            <div className="flex space-x-3">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={prevSlide}
-                disabled={currentSlide === 0}
-                className="bg-slate-700/80 backdrop-blur-sm border-slate-500/50 hover:bg-slate-600/80 text-slate-200 hover:text-white disabled:opacity-50"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={nextSlide}
-                disabled={currentSlide === slides.length - 1}
-                className="bg-slate-700/80 backdrop-blur-sm border-slate-500/50 hover:bg-slate-600/80 text-slate-200 hover:text-white disabled:opacity-50"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </Button>
+          {/* Slide Counter */}
+          <div className="mb-8">
+            <div className="inline-block px-4 py-2 bg-[#1a2426] rounded-full border border-[#62EF92]/20">
+              <span className="text-sm text-white">Slide {currentSlide + 1} of {slides.length}</span>
             </div>
           </div>
 
           {/* Slide Content */}
-          <div className="bg-slate-800/90 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-600/40 p-10 min-h-[700px] relative overflow-hidden">
+          <div className="bg-[#1a2426]/90 backdrop-blur-xl rounded-2xl shadow-2xl border border-[#62EF92]/20 p-10 min-h-[700px] relative overflow-hidden">
             {/* Slide decorative elements */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-purple-500/10 to-transparent rounded-bl-full"></div>
-            <div className="absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-tr from-violet-500/10 to-transparent rounded-tr-full"></div>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#62EF92]/10 to-transparent rounded-bl-full"></div>
+            <div className="absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-tr from-[#62EF92]/10 to-transparent rounded-tr-full"></div>
 
             <div className="relative z-10">
-              {slide.type !== "title" && (
-              <div className="mb-10">
-                <h2 className="text-4xl font-bold text-white drop-shadow-lg mb-3">{slide.title}</h2>
-                <p className="text-xl text-slate-200">{slide.subtitle}</p>
-              </div>
+              {slide.type === "title" ? (
+                <div className="flex flex-col items-center justify-center min-h-[600px] text-center">
+                  <h1 className="text-6xl font-bold text-white mb-4">
+                    Bilan Stage <span className="text-[#62EF92]">PFE</span>
+                  </h1>
+                  <p className="text-2xl text-white/90 mb-8">{slide.subtitle}</p>
+                  <Badge
+                    variant="outline"
+                    className="text-lg px-6 py-3 bg-[#62EF92] text-[#1a2426] border-none font-medium"
+                  >
+                    <Code className="w-5 h-5 mr-2" />
+                    {slide.content?.role}
+                  </Badge>
+                  <p className="text-white/80 mt-8 text-lg">{slide.content?.period}</p>
+                  <p className="text-white/70 mt-2">
+                    Sous la supervision d'<span className="text-[#62EF92]">Abdelhay</span>
+                  </p>
+                </div>
+              ) : (
+                <div className="mb-10">
+                  <h2 className="text-4xl font-bold text-white mb-3">{slide.title}</h2>
+                  <p className="text-xl text-[#62EF92]">{slide.subtitle}</p>
+                </div>
               )}
 
-              {renderSlideContent()}
+              {slide.type !== "title" && renderSlideContent()}
             </div>
           </div>
 
           {/* Navigation Dots */}
-          <div className="flex justify-center mt-8 space-x-3">
+          <div className="flex justify-center mt-8 space-x-2">
             {slides.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
                   index === currentSlide
-                    ? "bg-gradient-to-r from-purple-500 to-violet-500 scale-125 shadow-lg shadow-purple-500/30"
-                    : "bg-gray-600 hover:bg-gray-500"
+                    ? "bg-[#62EF92] scale-125"
+                    : "bg-[#62EF92]/20 hover:bg-[#62EF92]/40"
                 }`}
               />
             ))}

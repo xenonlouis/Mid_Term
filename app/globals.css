@@ -6,6 +6,8 @@
 
 body {
   font-family: 'Inter', sans-serif;
+  background-color: rgb(35, 45, 47);
+  color: #ffffff;
 }
 
 @layer utilities {
@@ -16,30 +18,25 @@ body {
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
+    --background: rgb(35, 45, 47);
+    --foreground: 0 0% 100%;
+    --card: 35 45 47;
+    --card-foreground: 0 0% 100%;
+    --popover: rgb(35, 45, 47);
+    --popover-foreground: 0 0% 100%;
+    --primary: #62EF92;
+    --primary-foreground: rgb(35, 45, 47);
+    --secondary: rgba(98, 239, 146, 0.1);
+    --secondary-foreground: #62EF92;
+    --muted: rgba(98, 239, 146, 0.1);
+    --muted-foreground: rgba(255, 255, 255, 0.7);
+    --accent: #62EF92;
+    --accent-foreground: rgb(35, 45, 47);
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+    --border: rgba(98, 239, 146, 0.2);
+    --input: rgba(98, 239, 146, 0.1);
+    --ring: #62EF92;
     --radius: 0.5rem;
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -93,4 +90,25 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Reetain specific gradients */
+.reetain-gradient {
+  background: linear-gradient(135deg, #62EF92 0%, rgba(98, 239, 146, 0.2) 100%);
+}
+
+.reetain-gradient-subtle {
+  background: linear-gradient(135deg, rgba(98, 239, 146, 0.2) 0%, rgba(98, 239, 146, 0.05) 100%);
+}
+
+.reetain-border {
+  border-color: rgba(98, 239, 146, 0.2);
+}
+
+.reetain-text {
+  color: #62EF92;
+}
+
+.reetain-bg {
+  background-color: rgb(35, 45, 47);
 }
